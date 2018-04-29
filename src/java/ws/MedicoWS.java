@@ -29,25 +29,7 @@ import modelo.MedicoModel;
  */
 @Path("Consultorio")
 public class MedicoWS {
-//    public static void main(String[] args) {
-//        Medicos m = new Medicos();
-//        Gson g = new Gson();
-//        try {
-//            
-//            SessionFactory factory = new Configuration().configure("/dao/hibernate.cfg.xml").buildSessionFactory();
-//            
-//            Session sessao = factory.openSession();
-//            
-//            m = (Medicos) sessao.get(Medicos.class, 1);
-//            
-//            System.out.println(g.toJson(m));
-//            
-//        } catch (HibernateException hibernateException) {
-//            System.out.println(g.toJson(hibernateException.getMessage()));
-//        }
-//        
-//    
-//    }
+
 
     @Context
     private UriInfo context;
@@ -103,7 +85,13 @@ public class MedicoWS {
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    @Path("Medico/alterar")
+    public String putJson(String content) {
+        Gson g = new Gson();
+        MedicoModel m = (MedicoModel) g.fromJson(content, MedicoModel.class);
+        ControleMedicos c = new ControleMedicos();
+        return c.alterarMedico(m);
+        
     }
     
     @POST
@@ -114,8 +102,6 @@ public class MedicoWS {
         MedicoModel m = (MedicoModel) g.fromJson(content, MedicoModel.class);
         ControleMedicos c = new ControleMedicos();
         return c.CadastroMedico(m);
-        
-        
     }
     
     @DELETE

@@ -95,5 +95,29 @@ public class ControleMedicos {
         conex.desconecta();
         return medico;
     }
+    public String alterarMedico(MedicoModel medico){
+        ConexaoMySQL conex = new ConexaoMySQL();
+        conex.conecta();
+        String sql = ("update medicos set med_nome = ?, med_crm =?, med_idade = ?, med_espec =? where id medico = ?");
+        PreparedStatement pst;
+        String retorno = "";
+        try {
+            pst = conex.con.prepareStatement(sql);
+            pst.setString(1, medico.getMed_nome());
+            pst.setString(2, medico.getMed_crm());
+            pst.setInt(3, medico.getMed_idade());
+            pst.setString(4, medico.getMed_espec());
+            pst.setInt(5, medico.getMed_id());
+            pst.execute();
+            conex.desconecta();
+            retorno = "Medico alterado com sucesso nome do medico: "+medico.getMed_nome();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleMedicos.class.getName()).log(Level.SEVERE, null, ex);
+            retorno =  "erro ao alterar dados do medico \n"+ex.getMessage();
+        }
+        
+        return retorno;
+        
+    }
 
 }
