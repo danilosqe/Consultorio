@@ -30,6 +30,7 @@ public class ControleMedicos {
         
         String sql = "insert into medicos(med_nome, med_crm, med_idade, med_espec) values(?, ?, ?, ?)";
         PreparedStatement pst;
+        String retorno = "";
         try {
             pst = conex.con.prepareStatement(sql);
             pst.setString(1, medico.getMed_nome());
@@ -37,12 +38,14 @@ public class ControleMedicos {
             pst.setInt(3, medico.getMed_idade());
             pst.setString(4, medico.getMed_espec());
             pst.execute();
-            conex.desconecta();
-            return "Medico cadastrado com sucesso";
+            
+            retorno = "Medico cadastrado com sucesso";
         } catch (SQLException sQLException) {
             System.out.println("Falha ao inserir os dados");
-            return "Falha ao inserir os dados"+sQLException.getMessage();
+            retorno = "Falha ao inserir os dados"+sQLException.getMessage();
         }
+        conex.desconecta();
+        return retorno;
     }
     
     //METODO PARA BUSCAR A LISTA DE MEDICOS

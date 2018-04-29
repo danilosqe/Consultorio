@@ -14,6 +14,20 @@ import java.util.Date;
 public class ConsultasModel {
 
     /**
+     * @return the pac_nome
+     */
+    public String getPac_nome() {
+        return pac_nome;
+    }
+
+    /**
+     * @param pac_nome the pac_nome to set
+     */
+    public void setPac_nome(String pac_nome) {
+        this.pac_nome = pac_nome;
+    }
+
+    /**
      * @return the cons_numero
      */
     public int getCons_numero() {
@@ -102,4 +116,5 @@ public class ConsultasModel {
     private String medico_crm;
     private Date consulta_dataHora;
     private int cons_numero;
+    private String pac_nome;
 }
