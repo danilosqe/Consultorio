@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Danilo Martins do Nascimento-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping">
+
+<hibernate-mapping>
+    <!--configuraçao da tabela medicos-->
+    <class name="dao.Medicos" table="medicos">
+        
+        <id name="med_id" column="med_id" type="int">
+           
+            <generator class="assigned"/>
+        </id>
+        <!--informa quais as colunas (variaveis da classe) serao utilizadas-->
+        <property name="med_nome" type="string"/>
+        <property name="med_crm" type="string"/>
+        <property name="med_idade" type="int"/>
+        <property name="med_espec" type="string"/>
+    </class>
+</hibernate-mapping>
